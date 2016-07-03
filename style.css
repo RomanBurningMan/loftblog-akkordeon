@@ -96,7 +96,7 @@ header{
 	margin-bottom: 0.2em;
 }
 
-.container-item .main-item .arrowsActive {
+.container-item .main-item .active {
 	background-image: url('img/arrow-up.png');
 	background-color: #ff8663;
 }

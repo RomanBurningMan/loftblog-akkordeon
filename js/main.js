@@ -1,30 +1,36 @@
-$(document).ready(function(){
-	$('.arrows').on('click', function(e){
-		e.preventDefault();
+$(document).ready(function () {
+    $('a.arrows').on('click', function (e) {
+        e.preventDefault();
 
-		var $this = $(this),
-			item = $this.closest('.main-item'),
-			list = $this.closest('.container-item'),
-			triger = $this.closest('.arrows'),
-			trigerItem = triger.find('.arrows'),
-			items = list.find('.main-item'),
-			content = item.find('.sub-menu'),
-			otherContent = list.find('.sub-menu'),
-			duration = 300;
+        var $link = $(this),
+            $item = $link.closest('.main-item'),
+            $itemList = $item.find('.sub-menu'),
+            $list = $link.closest('.container-item'),
+            duration = 250,
 
-		if (!item.hasClass('active')){
-			item.removeClass('active');
-			item.addClass('active');
-			triger.addClass('arrowsActive')
+            $activeItem,
+            $activeItemList,
+            $arrow = $('a.arrows');
+            
 
-			otherContent.stop(true,true).slideUp(duration);
-			content.stop(true,true).slideDown(duration);
-		} else{
-			content.slideUp(duration);
-			item.removeClass('active');
-			triger.removeClass('arrowsActive');
-		}
+        // если текущий элемент неактивен
+        if (!$item.hasClass('active')) {
 
-	});
+            $activeItem = $list.find('.main-item.active');
+            $activeItemList = $activeItem.find('.sub-menu');
+            $activeItem.removeClass('active');
+            $arrow.removeClass('active');
+            $activeItemList.slideUp(duration);
+
+            $link.addClass('active');
+            $item.addClass('active');
+            $itemList.slideDown(duration);
+
+        } else {
+        	$link.removeClass('active');
+            $item.removeClass('active');
+            $itemList.slideUp(duration);
+        }
+    });
 
 });
